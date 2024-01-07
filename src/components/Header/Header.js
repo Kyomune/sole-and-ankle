@@ -1,18 +1,21 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 
-import { COLORS, WEIGHTS } from '../../constants';
-import Logo from '../Logo';
-import SuperHeader from '../SuperHeader';
+import { COLORS, WEIGHTS } from "../../constants";
+import Logo from "../Logo";
+import SuperHeader from "../SuperHeader";
 
 const Header = () => {
   // Our site features two visual headers, but they should be
   // grouped semantically as a single header.
   return (
-    <header>
+    <Wrapper>
       <SuperHeader />
       <MainHeader>
         <Logo />
+
+        <Spacer></Spacer>
+
         <Nav>
           <NavLink href="/sale">Sale</NavLink>
           <NavLink href="/new">New&nbsp;Releases</NavLink>
@@ -21,17 +24,30 @@ const Header = () => {
           <NavLink href="/kids">Kids</NavLink>
           <NavLink href="/collections">Collections</NavLink>
         </Nav>
+
+        <Spacer></Spacer>
       </MainHeader>
-    </header>
+    </Wrapper>
   );
 };
 
-const MainHeader = styled.div`
-  padding: 0 32px;
-  border-bottom: 1px solid ${COLORS.gray[300]};
+const Wrapper = styled.header`
+  display: flex;
+  flex-direction: column;
 `;
 
-const Nav = styled.nav``;
+const MainHeader = styled.div`
+  padding: 21px 0px 23px 32px;
+  border-bottom: 1px solid ${COLORS.gray[300]};
+  display: flex;
+  align-items: center;
+  gap: 0px;
+`;
+
+const Nav = styled.nav`
+  display: flex;
+  gap: 48px;
+`;
 
 const NavLink = styled.a`
   font-size: 1.125rem;
@@ -43,6 +59,10 @@ const NavLink = styled.a`
   &:first-of-type {
     color: ${COLORS.secondary};
   }
+`;
+
+const Spacer = styled.div`
+  flex: 1;
 `;
 
 export default Header;
